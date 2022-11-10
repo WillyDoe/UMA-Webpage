@@ -1,0 +1,1099 @@
+* {
+    box-sizing: border-box;  /* hier habe ich das box-sizing für alle elemente auf border-box gestellt. Das bedeutet, dass ein element mit einer fest definierten größe
+    durch hinzufügen von padding und borders nicht größer wird sondern der content teil schrumpft*/
+}
+
+/** Breakpoint: 576px+ */
+@media (min-width: 36em) {}/* hier habe ich die standard-breakpoints eingebunden, damit diese jederzeit für mich ohne suchmaschineneingabe aufzufinden sind und ich diese immer wieder kopieren kann*/
+
+/** Breakpoint: 768px+ */
+@media (min-width: 48em) {}
+
+/** Breakpoint: 992px+ */
+@media (min-width: 62em) {}
+
+/** Breakpoint: 1200px+ */
+@media (min-width: 75em) {}
+
+/** Breakpoint: 1400px+ */
+@media (min-width: 87.5em) {}
+
+html {
+    font-size: 1em; /* hier habe ich für mein gesamtes html-element eine feste font-size definiert, welche standarmäßig vererbt wird. 1rem=16px*/
+}
+
+body {
+    font-family: "Montserrat", sans-serif; /* hier habe ich eine einheitlich font-family für alle im body befindlichen element definiert und das margin, padding des bodys auf null gesetz, damit es der content des bodys, sich nahtlos
+    in das html-element einfügt*/
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 160rem;
+    margin-left: auto; /* hier habe ich für meinen container, den ich auf meiner ganzen seite immer wieder verwende, um meinen inhalt einheitlich auszurichten, eine maximale breite eingestellt, damit der inahlt bei sehr breiten bildschirmen/
+    zoomeinstellungen nicht über eine gewisse breite hinausgeht. Außerdem habe ich einen festes padding definiert und über margin-let, margin-right: auto dafür gesorgt, dass mein container immer mittig vom parent angezeigt wird*/
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.--flex{
+    display: flex;  /* hier habe ich einen modifikator erstellt, der das jeweilig element zu einer flexbox macht und die flex-items über space-between, an den rändern ausrichtet*/
+    justify-content: space-between;
+}
+@media (min-width: 62em) {
+    .container {
+        padding-left: 2rem;
+        padding-right: 2rem; /* hier habe ich eine mediaquery verwendt um bei bildschirmen, die mindestens 62em breit sind, das padding meines containers anzupassen*/
+    }
+}
+
+.button{
+    -webkit-appearance: none; /*mit appearance: none, stelle ich die standardstyles, welche vom browser/betriebssystem angewendet werden aus*/
+    appearance: none;
+    border: none;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    background-color: #ed6a4e;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 0.25rem 0.8rem rgba(0, 0, 0, 0.5)
+}
+
+.button--contact{
+    background-color: #014153;
+}
+
+
+.--breiter{
+    padding: 1.25rem 4.5rem;
+}
+
+
+
+.text-orange{
+    color:#ed6a4e;
+}
+
+.button:hover{
+    text-decoration: underline;
+    box-shadow: 0 0 0 0;            /*hier verwende ich den hover-selektor, um eigeschaften des buttons, bei cursorstreif zu verändern*/
+    background-color: #dd5f42;
+}
+
+.button--contact:hover{
+    background-color: #002b36;
+}
+
+
+.button--transparent{
+    -webkit-backdrop-filter: blur(0.5rem);
+   backdrop-filter: blur(0.5rem) ;
+   background-color: transparent;
+   border: 0.125rem solid white; 
+}
+
+.button--transparent:hover{
+    -webkit-backdrop-filter: contrast(1.5);
+    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.25);
+    backdrop-filter: contrast(1.5) ;
+}
+
+.header {
+    background-repeat: no-repeat;  /*hier binde ich ein background-image ein und definiere mit background-size: cover, dass das bild den ganzen container ausfüllen soll und über background-repeat: no-repeat, dass das Bild nicht wiederholt werden soll*/
+    background-size: cover;
+    background-position: 50% 95%;  /*mit background-position wird mit dem ersten wert die ausrichtung auf der x-achse mit dem zweiten der auf der y-achse angepasst. Weil background-size auf cover ist, ändert der x-wert allerdings nichts, da das bild über die ganze breite gestreckt wird*/
+    background-image: url('../images/header/header-background-0.5x.jpg');
+    padding-bottom: 2.5rem;
+}
+
+@media (min-width: 62em) {
+    .header {
+        background-image: url('../images/header/header-background.jpg');  /* hier lade ich eine größere version des bildes für die desktopversion, um die performance zu verbessern*/
+        
+    }
+}
+
+.header::after{
+    content: "";
+    display: block;
+    width: 6.5rem;
+    height: 0.1rem;
+    background-color: #ed6a4e; /* hier schalte ich das pseudoelement ::after auf, um eine trennbalken hinzuzufügen. Wichtig mit dem content-attribut sorge ich dafür, dass das element auch wirklich angezeigt wird */
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 555px;
+    box-shadow: 0 0 0.5rem black;
+}
+
+@media (min-width: 62em){
+    .header::after{
+        width: 12.5rem;
+    }
+}
+
+.header__logo-link {  /* hier wandle ich einen link in ein block-element um, damit der margin-left, margin-right trick klappt*/
+    display: block;
+    width: 9rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 62em) {
+    .header__logo-link {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+.header__logo {
+    width: 100%;
+    filter: drop-shadow(0 0 0.8rem rgba(0, 0 , 0, 0.5));   /*hier verwende ich das filter attribut, um speziell das aussehen von img elementen anzupassen, in dem fall füge ich einen schatten hinzu
+    es gibt auch blur, brightness, contrast, grayscale, hue-rotate, invert, opacity, usw...*/
+}
+
+.header__nav-ul {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    
+}
+
+.header__nav-li {
+    display: inline-block;  /*hier mache ich aus den li-elemeten inline-block-elemente, damit diese nebeneinander angezeigt werden und nicht untereinander*/
+    list-style-type: none;  /*list-style-type: none entfernt alle styles von listen elementen. allerdings kann man mit diesem property auch andere styles aufschalten*/
+    
+}
+
+.header__nav-li--desktop-only{ /*hier sorge ich dafür, dass dieses listen element in der mobilversion nicht angezeigt wird*/
+    display: none;
+}
+
+@media (min-width: 62em){
+    .header__nav-li--desktop-only{ /*hier sorge ich ich dafür, dass das element in der desktop-version angezeigt wird*/
+        display: inline-block;
+    }
+    
+}
+
+.header__nav-link {
+    display: inline-block;
+    font-weight: bold;
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 1.1rem 1rem;
+    text-shadow: 0px 0px 16px black;
+}
+
+.header__nav {
+    padding-top: 3rem;
+    padding-bottom: 0.5rem;
+}
+
+@media (min-width: 62em) {
+    .header__nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; /**hier verwende ich eine flexbox, um den nav-bereich auszurichten. über den space-between-befehl sorge ich dafür, dass die äußeren elemente bündig an den rändern des parents angeordnet werden, und zwischen
+         den elementen en gleichmäßiger abstand geschaffen wird*/
+    }
+}
+
+.header__heading{
+    font-size: 2rem;
+    color: white;
+    margin: 0;
+    text-shadow: 0px 0px 16px black;
+}
+
+@media (min-width: 36em) {
+    
+.header__heading{
+    font-size: 3rem;
+}
+}
+
+.header__sub-heading{
+    font-size: 1rem;
+    color: white;
+    margin: 0;
+    padding-top: 0.5rem;
+    padding-bottom: 5rem;
+    text-shadow: 0px 0px  16px black;
+}
+
+@media (min-width: 36em) {
+    
+    .header__sub-heading{  /*über mediaqueries werden paramter angepasst, um das design zu erhalten*/
+        font-size: 1.25rem;
+    }
+}
+
+@media (min-width: 62em) {
+    
+    .header__sub-heading{
+        padding-bottom: 7.5rem;
+    }
+}
+    
+
+.header__button-container{
+    display: flex;
+    justify-content: center; /*hier mache ich aus dem button-container eine flexbox und sorge mit jsutify-content: center dafür, dass der button mittig angezeigt wird*/
+    padding-bottom: 1.5rem;
+}
+
+@media (min-width: 62em) {
+    
+.header__button-container{  /*hier sorge ich dafür, dass der button-container, in der desktopversion nicht angezeigt wird*/
+    display: none;
+    
+    }
+}
+
+
+@media (min-width: 62em) {
+    .header__heading{
+        padding-top: 5rem;
+    }
+}
+
+.heading{
+    color: #014153;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 4.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    padding: 2rem 0 2rem 0;
+}
+
+@media (max-width: 36em){
+    .heading{
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 48em){
+    .heading{
+        font-size: 3.5rem;
+    }
+}
+
+.heading--centered{
+    text-align: center;
+}
+
+.heading__pre-text{
+    display: block;
+    font-size: 2rem;
+}
+
+.heading--top-box::before{
+    content:'';
+    display: block;
+    height: 0.125rem;
+    width: 10rem;
+    background-color: #ed6a4e;
+    margin-bottom: 3rem;
+}
+
+.adventures{
+    background-color: rgb(225, 220, 206);
+    background-image: url("../images/adventures/background.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    padding-bottom: 4rem;
+    
+}
+
+.adventures__card-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; /*über den flax-wrap: wrap befehl sorge ich dafür, dass die flex-items einen zeilenumbruch machen dürfen wenn der viewport schmaler wird. Justify-conten: center sorgt dann dafür, dass die items gecenterd werden*/
+    margin-left: -1rem;
+    margin-right: -1rem;
+    
+}
+
+.adventures__card{
+    text-align: center;
+    background-color: white;
+    flex: 0 1 40.5rem;      /*der flex befehl sorgt dafür, dass über den ersten parameter das wachsen, über den zweiten das schrumpfen und über den dritten die größe des items festgelegt wird*/
+    margin: 1rem;
+    border-radius: 1rem;
+    overflow: hidden;  /*overflow hidden wird an dieser stelle verwendet, um den overflow der images abzuscheiden und auf die größe des containers reduzieren*/
+    box-shadow: 0 0 30px rgba(0, 0 , 0, 0.5);
+    transition: all 0.4s linear; /*mit der transition eigenschaft wird festgelegt wie die transition abläuft und welche eigenschaften letzendlich eine transition machen*/
+    transform: scale(1); /*mit der transform eingeschaft wird festgelegt wird welche eigeschafen überhaupt verändert werden sollen*/
+    position: relative; /* position: relative sorgt dafür, dass das element child elementen über absolut relativ zu diesem ausgerichtet zu werden*/
+    
+}
+
+
+
+.adventures__card:hover{
+    transform: scale(1.025);  /*transitions brauchen eine initiierung, um ausgefühtz zu werden, in diesem falle einen hover*/
+}
+
+.adventures__card-image{
+    object-fit: cover;
+    object-position: -100px 0px ;
+    display: block;
+    
+}
+
+@media (max-width: 36em){
+    .adventures__card-image {
+        object-fit: cover; /*über object-fit, object-position wird festgelegt wie ein video oder bild ausgerichtet werden soll, um sich an seinem parent-container auszurichten. Bei cover wird das seitenverhältnis beibehalten und ein teil des bildes abgeschnitten*/
+        object-position: -500px 0px; /*über fill kann definiert werden welcher ausschnitt des bildes angezeigt werden soll*/
+        display: block;
+}
+}
+
+@media (max-width: 48em){
+    .adventures__card-image {
+        object-fit: cover;
+        object-position: -250px 0px;
+        display: block;
+}
+}
+
+
+.adventures__card-heading{
+    margin: 0;
+    font-size: 3rem;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.adventures__card-paragraph{
+    color:white;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 2rem;    
+    margin: 1.5rem;
+    padding-bottom: 1rem;
+
+}
+
+.adventures__card-wrapper{
+    position: absolute ;
+    z-index: 10; 
+    bottom: 0;
+    background-color: rgba(0, 0 , 0, 0.4);
+    width: 100%;
+    backdrop-filter: blur(0.5rem) ; /*hier wird backdrop-filter verwendet, um den bereich hinter dem div zu blurn. filter würde das ganze element blurn*/
+    padding-bottom: 3rem;
+    padding-top: 2.3rem;
+    
+}
+
+.story{
+    background-image: url('../images/story/background-mobile.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-bottom: 4rem;
+    padding-top: 6rem;
+}
+
+@media (min-width: 62em){
+    .story{
+        background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, transparent 10%, transparent 90%, rgba(0, 0, 0, 0.6)),
+        url('../images/story/background-desktop.jpg');
+        background-size: 100% 100%, 110% auto;
+        background-position: center center, 100% 40% ;
+        background-attachment: local, fixed; /*über backgorund-attachement: fixed wird das hintergrundbild festgesetz, der inhalt schwebt nun darüber hinweg.
+        Local sorgt dafür, dass der lineargradient an dem sichtbaren teil des bildes ausgerichtet ist und nicht am unteren rand, der durchs scrollen gezeigt wird*/
+    }
+
+    .story__inner{
+        padding-left: 50%  ; /*das padding-left, sorgt dafür, dass der story-text auf der linken seite angezeigt wird*/
+    }
+}
+
+.heading--white{
+    color: white;
+    font-size: 2.5rem;
+    text-shadow: 0 0 0.5rem rgb(0, 0, 0);
+}
+
+.story__paragraph{
+    color: white;
+    font-size: 1.25rem;
+    padding-bottom: 2rem;
+    line-height: 2rem;
+    text-shadow: 0 0 0.5rem rgb(0, 0, 0);
+}
+
+.heading__parts{
+    font-size: 3rem;
+}
+@media (max-width: 48em){
+    .heading__parts{
+        font-size: 2rem;
+    }
+}
+.parts__paragraph{
+    color: #065064;
+    text-align: center;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    letter-spacing: 0.1rem;
+    line-height: 1.5;
+    font-weight: 600;
+}
+
+.paragraph--bottom-box::after{
+        content:'';
+        display: block;
+        height: 0.125rem;
+        width: 9rem;
+        background-color: #ed6a4e;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5rem;
+    
+}
+
+
+.parts__svg-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.parts__svg-section{
+    border: 1px solid #ed6a4e;
+    width: 33%;
+}
+
+.parts__svg-section:hover{
+    background-color: rgb(222, 222, 222);
+    cursor: pointer; /*mit dem cursor-property lässt sich der cursor anpassen*/
+}
+
+.parts__svg-section:nth-child(1),
+.parts__svg-section:nth-child(2),
+.parts__svg-section:nth-child(3){
+    border-top:none;
+}
+
+.parts__svg-section:nth-child(4),
+.parts__svg-section:nth-child(5),
+.parts__svg-section:nth-child(6){  /* in diesem abschnitt sorge ich dafür, dass die border oben und aupen nicht angezeigt wird*/
+    border-bottom: none;
+}
+
+.parts__svg-section:nth-child(1){
+    border-left: none;
+}
+
+.parts__svg-section:nth-child(3){
+    border-right: none;
+}
+
+.parts__svg-section:nth-child(4){
+    border-left: none;
+}
+
+.parts__svg-section:nth-child(6){
+    border-right: none;
+}
+
+@media (max-width: 48em){
+
+    .parts__svg-section:nth-child(1){
+        border-bottom: 1px solid #ed6a4e;
+    }
+
+    .parts__svg-section:nth-child(3){
+        border-left: none;
+        border-right: 1px solid #ed6a4e;
+        border-top: 1px solid #ed6a4e
+    }
+
+    .parts__svg-section:nth-child(2){
+        border-right: none;
+    }
+
+    .parts__svg-section:nth-child(4){
+        border-right: none;
+        border-left: 1px solid #ed6a4e;
+        border-bottom: 1px solid #ed6a4e;
+}
+.parts__svg-section:nth-child(5){
+    border-left: none;
+    border-bottom: none;
+}
+.parts__svg-section:nth-child(6){
+    border-bottom: none;
+}
+}
+
+@media (max-width: 48em){
+    .parts__svg-section{
+        width: 50%;
+    }
+}
+
+.parts__icon-container{
+    max-width: 10rem; /*mit max-widht sorgt man dafür, dass sich die breite verkleinern und bis zu einer grenze vergrößern darf, wenn sich der viewport verändert */
+    height: 10rem;
+    background-color: #ed6a4e;
+    margin: 3rem auto 1rem auto;
+    clip-path: circle(); /*mit clip-path, lässt sich die form von divs anpassen*/
+    position: relative;
+    
+}
+
+.parts__icon{
+    max-width: 4rem;
+    max-height: 4rem;
+    fill: white;
+    display: block;
+    position: absolute; /*mit postion absolute lassen sich elemente komplett frei zum nächsten parent mit der eigenschaft relativ ausrichten*/
+    left: 30%;
+    top: 30%;
+    
+}
+
+
+
+.part__icons-paragraph{
+    color: #014153;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    letter-spacing: 0.14rem;
+    padding-bottom: 2rem;
+    padding-top: 1rem;
+    padding: 2rem;
+    padding-right: 2rem;
+}
+
+@media (max-width: 48em){
+    .part__icons-paragraph{
+        font-size: 1rem;
+       
+    }
+}
+
+
+.guide{
+    
+    
+    background-image: 
+        linear-gradient(90deg, rgba(2, 33, 34, 0.25), rgba(36, 161 ,163, 0.25)),
+        url('../images/guide/pexels-kevin-menajang-982673.jpg'),
+        linear-gradient(90deg, #002b36, #014153),
+        url('../images/guide/pexels-aron-visuals-1694621.jpg');
+        background-size: 100% calc(100% - 15rem), 100% calc(100% - 15rem), 100% calc(100% - 15rem), 100% auto;
+        background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+        background-position: 50% 100%, 50% 100%, 50% 100%, 50% -40vw  ;
+        background-blend-mode: normal, saturation, normal ; /*background-blend-mode: erlaubt bildeffekte, abhängig von schichten, die darüber, darunter liegen*/
+        padding-bottom: 8rem;
+}
+
+@media(min-width: 62em){
+    .guide{
+        background-size: 60% 100%, 60% 100%, 60% 100%,  40% auto; /*erster wert definiert die breite,zweite die höhe, auto sorgt dafür dass der auto wert im verhältnis zum angegeben wert berechnet wird*/
+        background-position:  100% 50%, 100% 50%, 100% 50%, 0% 30%; /*erster wert definiert die ausrichtung auf der x-achse 100% sind also rechtsbündig. Für die y-achse gilt das gleich 100% bottom-bündig*/
+
+       
+    }
+}
+
+
+
+
+.guide__inner{
+    padding-left: 45%;
+    padding-right: 5%;
+}
+
+.guide__heading{
+    color: white;
+    text-transform: uppercase;
+    padding-top: 8rem;
+    font-size: 3.5rem;
+    letter-spacing: 0.25rem;
+}
+
+.heading--bottom-box::after{
+    content:'';
+    display: block;
+    height: 0.125rem;
+    width: 9rem;
+    background-color: #ed6a4e;
+    margin-top: 2rem;
+}
+
+.guide__heading__pre-text{
+    font-weight: lighter;
+    display: block;
+    font-size: 1.8rem;
+    padding-bottom: 0.5rem;
+
+}
+
+
+
+.guide__paragraph{
+    color: white;
+    letter-spacing: 0.2rem;
+    padding-bottom: 3rem;
+}
+
+@media (max-width: 1685px){
+    .guide__paragraph{
+        font-size: 0.75rem;
+        letter-spacing: 0.05rem;
+        padding-bottom: 1rem;
+    }
+
+    .guide__heading{
+        font-size: 1.75rem;
+        padding-top: 2rem;
+    }
+
+    .guide__heading__pre-text{
+        font-size: 1rem;
+    }
+    .guide{
+        padding-bottom: 2rem;
+    }
+
+    .guide__button{
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 62em){
+    .guide__inner{
+        padding-left: 0;
+        padding-top: 15rem;
+    }
+}
+
+.skills{
+    background-image: url('../images/adventures/background.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    padding-bottom: 3rem;
+}
+
+.skills-heading{
+    margin: 0;
+    text-align: center;
+    color: #014153;
+    font-size: 5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25rem;
+    padding-bottom: 1rem;
+}
+
+@media (max-width: 36em){
+    .skills-heading{
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 48em){
+    .skills-heading{
+        font-size: 3rem;
+    }
+}
+
+
+.skills__pre-text{
+    padding-top: 3rem;
+    display: block;
+    font-size: 2rem;
+    font-weight: 550;
+}
+
+.skills__flexbox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.skills__card{
+    background-color: white;
+    box-shadow: 0 0 30px rgb(0 0 0 / 50%);
+    transition: all 0.4s linear;
+    transform: scale(1);
+    position: relative;
+    margin: 4rem;
+    border-radius: 0.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+    flex: 0 1 35rem;
+    
+ 
+}
+
+.skills__card:hover{
+    transform: scale(1.025);
+    
+
+}
+
+.skills__icon-container{
+    max-width: 12rem;
+    height: 12rem;
+    background-color: #d66046;
+    clip-path: circle();
+    position: relative;
+
+}
+
+.skills__icon{
+    position: absolute;
+    fill: #014153;
+    top: 22%;
+    left: 22%;
+    display: block;
+    max-width: 7rem;
+    max-height: 7rem;
+    
+}
+.skills__icon3{
+    position: absolute;
+    fill: #014153; /*mit fill werden die farben von svg-paths definiert */
+    top: 18%;
+    left: 23%;
+    display: block;
+    max-width: 7rem;
+    max-height: 7rem;
+}
+
+.skills__paragraph{
+    color: #014153;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-right: 4rem;
+}
+
+@media (max-width: 48em){
+    .skills__paragraph{
+        font-size: 1.75rem;
+    }
+
+    .skills__icon-container{
+        max-width: 8rem;
+        height: 8rem;
+    }
+
+    .skills__icon{
+        position: absolute;
+        fill: #014153;
+        top: 22%;
+        left: 22%;
+        display: block;
+        max-width: 4.5rem;
+        max-height: 4.5rem;
+        
+    }
+    .skills__icon3{
+        
+        top: 18%;
+        left: 23%;
+        max-width: 4.5rem;
+        max-height: 4.5rem;
+    }
+}
+
+
+@media (max-width: 36em){
+    .skills__paragraph{
+        font-size: 1rem;
+    }
+
+    .skills__icon-container{
+        max-width: 6rem;
+        height: 6rem;
+        
+    }
+
+    .skills__icon{
+        
+        display: block;
+        max-width: 3rem;
+        max-height: 3rem;
+        
+    }
+    .skills__icon3{
+        
+        display: block;
+        max-width: 3rem;
+        max-height: 3rem;
+    }
+}
+
+
+.skills__box-bottom::after{
+    content:'';
+    display: block;
+    height: 0.125rem;
+    width: 9rem;
+    background-color: #ed6a4e;
+    margin-top: 2rem;
+}
+
+.skills__card-wrapper{
+    padding-left: 2rem;
+}
+
+.skills__list{
+    margin: 0;
+    padding-left: 2rem;
+    color: #014153;
+    line-height: 4rem;
+    font-size: 2rem;
+}
+
+@media (max-width: 36em){
+    .skills__list{
+        line-height: 1.7rem;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 48em){
+    .skills__list{
+        line-height: 3.4rem;
+        font-size: 1.2rem;
+    }
+}
+
+.quote{
+    background-color: #014153;
+    color: #dd5f42;
+    text-align: center;
+    padding: 4rem 0rem 3rem 0rem;
+    text-transform: uppercase;
+}
+.quote__container{
+    padding-left: 12rem;
+    padding-right: 12rem;
+}
+
+.quote__quote{
+    font-size: 3.5rem;
+    font-weight: bold;
+    
+}
+
+@media (max-width: 62em) {
+    .quote__quote{
+        font-size: 2rem;
+    }
+    .quote__container{
+        padding-left: 5rem;
+        padding-right: 5rem;
+    }
+
+}
+
+
+
+.contact{
+    background-color: #ed6a4e;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.contact__logo{
+    opacity: 0.5;
+    display: block;
+    width: 10rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 62em){
+    .contact__logo{
+        width: 15rem;
+    }
+        
+}
+
+.contact__cta{
+    margin: 0;
+    font-weight: normal;
+    font-size:1.5rem;
+    text-align: center;
+    color: white;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+@media (min-width: 62em){
+    .contact__cta{
+        margin: 0;
+        font-weight: normal;
+        font-size:2rem;
+        text-align: center;
+        color: white;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+        
+}
+
+.contact__number-container{
+    text-align: center;
+}
+
+.contact__number{
+    color: #014153;
+    padding: 0.5rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    
+}
+
+.contact__number:hover{
+    text-decoration: underline;
+}
+
+.form__input{
+    -webkit-appearance: none;
+    appearance: none;
+    font-family: inherit;
+    background-color: white;
+    font-size: 1rem;
+    padding: 0.5rem 0.5rem;
+    border: 0.125rem solid grey;
+    border-radius: 0.5rem;
+    margin: 0;
+    width: 22.5rem;
+}
+
+.form__input:focus{
+    border: 0.125rem solid #014153;
+    outline: none;
+} 
+
+.form__input-container{
+    text-align: center;
+    padding-bottom: 1.5rem;
+}
+
+
+
+.form__input-textarea{
+    height: 8rem;
+}
+
+.contact__info::after{
+    content: "";
+    display: block;
+    width: 7.5rem;
+    height: 0.2rem;
+    background-color: #014153;
+    margin: 3rem auto;
+}
+
+@media (min-width: 62em){
+    .contact__info::after{
+        display: none;
+    }
+}
+
+@media (min-width: 62em){
+    .contact__flex-container{
+        display: flex;
+        flex-direction: row;
+        background-image: linear-gradient(90deg, transparent 49.9%, rgba(255, 255, 255, 0.5) 49.9%, rgba(255, 255, 255, 0.5) 50%, transparent 50%); /*hier habe ich einen linear-gradient verwendet, um einen trennstrich einzufügen*/
+        padding-top: 2rem;
+        padding-bottom: 2rem; 
+    }
+
+    .contact::after{
+        content: "";
+        display: block;
+        width: 7.5rem;
+        height: 0.1rem;
+        background-color: #014153;
+        margin: 3rem auto;
+    }
+
+    
+}
+
+@media (min-width: 62em){
+    .contact__form{
+        flex: 0 0 50%;
+        padding-left: 6rem;
+        padding-right: 4rem;
+        
+    }
+
+    .form__input{
+        width: 100%;
+    }
+
+    .contact__info{
+        flex: 0 0 50%;
+        text-align: center;
+    }
+    
+}
+
+.form__input-submit-container{
+    text-align: center;
+}
+
+@media (min-width: 62em){
+    .form__input-submit-container{
+        text-align: right;
+    }
+}
+
+.footer{
+    background-color: #ed6a4e;
+    text-align: center;
+    color: #014153;
+    margin: 0;
+}
+
+.footer__name{
+    margin: 0;
+    padding-bottom: 1rem;
+}
+
+::selection{
+    color: #014153;
+    background-color: #ed6a4e;  /*mit dem pseudo-element ::selection kann das verhalten von text angepasst werden der makiert wird*/
+}
+
+.contact ::selection{ /* wichtig bei diesem selektor muss ein leerzeichen gesetz werden, wird dieses nicht gesetz wird lediglich text eingefärbt der sich direkt in diesem element befindet. Das Leerzeich ist äquivalent zum Sternchen*/
+    color: #ed6a4e;
+    background-color: #014153;
+}
+
+
+.footer ::selection{
+    color: #ed6a4e;
+    background-color: #014153;
+}
+
